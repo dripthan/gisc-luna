@@ -1,0 +1,76 @@
+
+~~~~~~~~~~~~~~~ MICRO-INSTRUCTIONS ~~~~~~~~~~~~~~
+
+ain                         : bus --> A
+bin                         : bus --> B
+cin                         : bus --> C
+
+aout                        : A --> bus
+bout                        : B --> bus
+cout                        : C --> bus
+
+marin                       : bus --> mar
+irin                        : bus --> ir
+fin                         : bus --> flgs
+
+pcin                        : bus --> pc
+pcout                       : pc --> bus
+pc                          : pc++
+endi                        : 0 --> seq
+
+op3                         : op code 3
+op2                         : op code 2
+op1                         : op code 1
+op0                         : op code 0
+aluout                      : alu --> bus
+
+ramin                       : bus --> ram
+ramout1                     : ram 1st byte --> bus
+ramout0                     : ram 2nd byte --> bus
+
+~~~~~~~~~~~~~~~ INSTRUCTIONS ~~~~~~~~~~~~~~~~~~~~
+
+00 naw                      : do nothing
+
+01 ldia         val         : val --> A
+02 ldib         val         : val --> B
+03 ldic         val         : val --> C
+
+04 lda          addr        : ram @ addr --> A
+05 ldb          addr        : ram @ addr --> B
+06 ldc          addr        : ram @ addr --> C
+
+07 stoa         addr        : A --> ram @ addr
+08 stob         addr        : B --> ram @ addr
+09 stoc         addr        : C --> ram @ addr
+
+0a swab         addr        : A <--> B using ram @ addr
+0b swac         addr        : A <--> C using ram @ addr
+0c swbc         addr        : B <--> C using ram @ addr
+
+0d add                      : A  + B --> A
+0e sub                      : A  - B --> A
+0f mul                      : A  * B --> A
+10 div                      : A  / B --> A
+11 neg                      :    - A --> A
+12 shl                      : A << B --> A
+13 shr                      : A >> B --> A
+
+14 not                      :   not  A --> A
+15 and                      : A and  B --> A
+16 or                       : A or   B --> A
+17 nand                     : A nand B --> A
+18 nor                      : A nor  B --> A
+19 xor                      : A xor  B --> A
+1a xnor                     : A xnor B --> A
+1b cmp                      : A cmp  B --> flags
+
+1c j            addr        : addr --> pc
+1d jz           addr        : addr --> pc if A == 0
+1e jnz          addr        : addr --> pc if A != 0
+1f jpos         addr        : addr --> pc if A  > 0
+20 jneg         addr        : addr --> pc if A  < 0
+21 jl           addr        : addr --> pc if A  < B
+22 jg           addr        : addr --> pc if A  > B
+23 jequ         addr        : addr --> pc if A == B
+24 jovf         addr        : addr --> pc if ovf
